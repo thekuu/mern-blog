@@ -74,6 +74,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
 // Start the server
-app.listen(3000, () => {
+app.listen(443, () => {
   console.log("Server is running on port 3000!");
 });
