@@ -1,0 +1,33 @@
+# Node.js dependencies
+client/node_modules/
+api/node_modules/
+
+# Logs
+logs/
+*.log
+client/logs/
+api/logs/
+
+# Environment files
+client/.env
+api/.env
+
+# Build directories
+client/dist/
+client/build/
+api/dist/
+api/build/
+
+# Temporary files
+*.tmp
+*.swp
+
+# IDE/editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Operating system files
+.DS_Store
+Thumbs.db
