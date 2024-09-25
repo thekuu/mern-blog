@@ -9,7 +9,7 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`/posts${cat}`);
+                const res = await axios.get(`https://mern-blog-ypb8.onrender.com/api/posts${cat}`);
                 setPosts(res.data);
             } catch (err) {
                 console.log(err);
@@ -32,7 +32,7 @@ const Home = () => {
                             <img src={`../upload/${post.img}`} alt="Post" />
                         </div>
                         <div className="content">
-                            <Link className="link" to={`/post/${post._id}`}>
+                            <Link className="link" to={`https://mern-blog-ypb8.onrender.com/api/post/${post._id}`}>
                                 <h1>{post.title}</h1>
                             </Link>
                             <p>{getText(post.desc)}</p>
