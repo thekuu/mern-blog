@@ -87,7 +87,7 @@ export const logout = (req, res)=>{
         try {
             const user = await User.findOne({ username: req.body.username });
             if (!user) return res.status(404).json("User not found!");
-    
+
             const isPasswordCorrect = bcrypt.compareSync(req.body.password, user.password);
             if (!isPasswordCorrect) return res.status(400).json("Wrong username or password!");
     
