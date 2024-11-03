@@ -40,9 +40,9 @@ import cookieParser from "cookie-parser";
 import multer from "multer";
 import connectDB from "./db.js";  // Import MongoDB connection
 import dotenv from "dotenv";
-
+import path from "path"
 dotenv.config();  // Load environment variables
-
+const __dirname = path.resolve()
 const app = express();
 
 // Middleware
@@ -73,6 +73,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
+app.use(express.static(path.join(__dirname, '../client/build')))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+})
 // Start the server
 app.listen(3000, () => {
   console.log("Server is running on port 3000!");
