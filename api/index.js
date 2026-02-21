@@ -73,11 +73,15 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
-app.use(express.static(path.join(__dirname, '../client/build')))
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
-})
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')))
+  app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+  })
+}
 // Start the server
-app.listen(3000, () => {
-  console.log("Server is running on port 3000!");
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+app.listen(PORT, HOST, () => {
+  console.log(`Server is running on ${HOST}:${PORT}!`);
 });

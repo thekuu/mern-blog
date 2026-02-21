@@ -19,7 +19,7 @@ const Write = () => {
         try {
             const formData = new FormData();
             formData.append("file", file);
-            const res = await axios.post("/upload", formData);
+            const res = await axios.post("/api/upload", formData);
             return res.data;
         } catch (err) {
             console.log(err);
@@ -48,7 +48,7 @@ const Write = () => {
         try {
             if (state?._id) {
                 // Update post
-                await axios.put(`/posts/${state._id}`, {
+                await axios.put(`/api/posts/${state._id}`, {
                     title,
                     desc: value,
                     cat,
@@ -56,7 +56,7 @@ const Write = () => {
                 });
             } else {
                 // Create new post
-                await axios.post(`/posts/`, {
+                await axios.post(`/api/posts/`, {
                     title,
                     desc: value,
                     cat,
