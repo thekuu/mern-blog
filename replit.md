@@ -29,8 +29,25 @@ A full-stack blog application built with MongoDB, Express.js, React, and Node.js
 └── package.json           # Root package.json
 ```
 
-## Environment Variables
-- `MONGO_URI` (secret): MongoDB connection string
+## Deployment Instructions
+
+### Backend (Render)
+1. Create a new Web Service on Render.
+2. Connect your GitHub repository.
+3. Set **Root Directory** to `api`.
+4. Set **Build Command** to `npm install`.
+5. Set **Start Command** to `node index.js`.
+6. Add environment variables:
+   - `MONGO_URI`: Your MongoDB connection string.
+   - `PORT`: 10000 (Render's default).
+   - `NODE_ENV`: production.
+
+### Frontend (Vercel/Netlify)
+1. Connect your GitHub repository.
+2. Set **Root Directory** to `client`.
+3. Set **Build Command** to `npm run build`.
+4. Set **Output Directory** to `build`.
+5. Ensure your API calls point to your Render backend URL (you may need to update the proxy or use environment variables for the API base URL).
 
 ## Recent Changes
 - 2026-02-21: Initial Replit setup

@@ -6,128 +6,148 @@ import 'react-quill/dist/quill.snow.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Write = () => {
-    const state = useLocation().state;
-    const navigate = useNavigate();
-    const [value, setValue] = useState(state?.desc || '');
-    const [title, setTitle] = useState(state?.title || '');
-    const [file, setFile] = useState(null);
-    const [cat, setCat] = useState(state?.cat || '');
-    const [error, setError] = useState('');
-    const [isSubmitting, setIsSubmitting] = useState(false);
+  const state = useLocation().state;
+  const navigate = useNavigate();
+  const [value, setValue] = useState(state?.desc || '');
+  const [title, setTitle] = useState(state?.title || '');
+  const [file, setFile] = useState(null);
+  const [cat, setCat] = useState(state?.cat || '');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-    const upload = async () => {
-        try {
-            const formData = new FormData();
-            formData.append("file", file);
-            const res = await axios.post("/api/upload", formData);
-            return res.data;
-        } catch (err) {
-            console.log(err);
-        }
-    };
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await axios.post("/api/upload", formData);
+      return res.data;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  };
 
-    const handleClick = async (e) => {
-        e.preventDefault();
-        setError(
-            title.trim() === ''
-                ? 'Title is required.'
-                : value.trim() === ''
-                    ? 'Description is required.'
-                    : !file && !state?.img
-                        ? 'Image file is required.'
-                        : cat === ''
-                            ? 'Category is required.'
-                            : ''
-        );
-        if (title.trim() === '' || value.trim() === '' || (!file && !state?.img) || cat === '') return;
-        if (isSubmitting) return;
-        setIsSubmitting(true);
+  const handleClick = async (e) => {
+    e.preventDefault();
+    if (!title || !value || !cat) {
+      setError("Please fill in all required fields.");
+      return;
+    }
 
-        let imgUrl = file ? await upload() : (state?.img || '');
+    setIsSubmitting(true);
+    setError('');
 
-        try {
-            if (state?._id) {
-                // Update post
-                await axios.put(`/api/posts/${state._id}`, {
-                    title,
-                    desc: value,
-                    cat,
-                    img: imgUrl,
-                });
-            } else {
-                // Create new post
-                await axios.post(`/api/posts/`, {
-                    title,
-                    desc: value,
-                    cat,
-                    img: imgUrl,
-                    date: moment(Date.now()).format("YYYY-MM-DD HH-mm-ss"),
-                });
-            }
+    let imgUrl = file ? await upload() : (state?.img || '');
 
-            navigate('/');
-        } catch (err) {
-            console.log(err);
-            console.log("Response:", err.response);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+    try {
+      if (state?._id) {
+        await axios.put(`/api/posts/${state._id}`, {
+          title,
+          desc: value,
+          cat,
+          img: imgUrl,
+        });
+      } else {
+        await axios.post(`/api/posts/`, {
+          title,
+          desc: value,
+          cat,
+          img: imgUrl,
+          date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+        });
+      }
+      navigate('/');
+    } catch (err) {
+      setError(err.response?.data || "An error occurred while saving the post.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-    return (
-        <div className="add">
-            <div className="content">
-                <input type="text" value={title} placeholder="Title" onChange={e => setTitle(e.target.value)} />
-                <div className="editorContainer">
-                    <ReactQuill className="editor" theme="snow" value={value} onChange={setValue} />
-                </div>
-            </div>
-            <div className="menu">
-                <div className="item">
-                    <h1>Publish</h1>
-                    <span>
-                        <b>Status: </b> Draft
-                    </span>
-                    <span>
-                        <b>Visibility: </b> Public
-                    </span>
-                    <input style={{ display: 'none' }} type="file" name="" id="file" onChange={e => setFile(e.target.files[0])} />
-                    <label className="file" htmlFor="file">Upload Image</label>
-                    <div className="buttons">
-                        <button>Save as a draft</button>
-                        <button onClick={handleClick} disabled={isSubmitting}>{isSubmitting ? 'Publishing...' : 'Publish'}</button>
-                    </div>
-                </div>
-                <div className="item">
-                    <h1>Category</h1>
-                    <div className="cat">
-                        <input type="radio" checked={cat === "art"} name="cat" value="art" id='art' onChange={e => setCat(e.target.value)} />
-                        <label htmlFor="art">Art</label>
-                    </div>
-                    <div className="cat">
-                        <input type="radio" checked={cat === "science"} name="cat" value="science" id='science' onChange={e => setCat(e.target.value)} />
-                        <label htmlFor="science">Science</label>
-                    </div>
-                    <div className="cat">
-                        <input type="radio" checked={cat === "technology"} name="cat" value="technology" id='technology' onChange={e => setCat(e.target.value)} />
-                        <label htmlFor="technology">Technology</label>
-                    </div>
-                    <div className="cat">
-                        <input type="radio" checked={cat === "cinema"} name="cat" value="cinema" id='cinema' onChange={e => setCat(e.target.value)} />
-                        <label htmlFor="cinema">Cinema</label>
-                    </div>
-                    <div className="cat">
-                        <input type="radio" checked={cat === "design"} name="cat" value="design" id='design' onChange={e => setCat(e.target.value)} />
-                        <label htmlFor="design">Design</label>
-                    </div>
-                    <div className="cat">
-                        <input type="radio" checked={cat === "food"} name="cat" value="food" id='food' onChange={e => setCat(e.target.value)} />
-                        <label htmlFor="food">Food</label>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="flex flex-col lg:flex-row gap-12">
+        <div className="flex-[5] space-y-6">
+          <input
+            type="text"
+            value={title}
+            placeholder="Article Title"
+            className="w-full text-4xl font-extrabold border-none outline-none placeholder-gray-300 focus:ring-0"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <div className="h-[450px] overflow-hidden rounded-2xl border border-gray-200">
+            <ReactQuill 
+              className="h-full border-none" 
+              theme="snow" 
+              value={value} 
+              onChange={setValue} 
+              placeholder="Tell your story..."
+            />
+          </div>
         </div>
-    );
+
+        <div className="flex-[2] space-y-8">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-6">
+            <h1 className="text-xl font-bold text-gray-900 border-b pb-4">Publish</h1>
+            <div className="space-y-3 text-sm text-gray-600">
+              <p><b>Status:</b> Draft</p>
+              <p><b>Visibility:</b> Public</p>
+              <input
+                style={{ display: 'none' }}
+                type="file"
+                id="file"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+              <label 
+                className="inline-block cursor-pointer text-teal font-bold hover:underline" 
+                htmlFor="file"
+              >
+                {file ? `Selected: ${file.name}` : "Upload Image"}
+              </label>
+            </div>
+            
+            {error && <p className="text-red-500 text-xs font-medium bg-red-50 p-3 rounded-lg">{error}</p>}
+
+            <div className="flex justify-between pt-4 border-t">
+              <button className="text-teal font-bold px-4 py-2 rounded-lg border border-teal hover:bg-teal-light transition-colors">
+                Save Draft
+              </button>
+              <button 
+                onClick={handleClick} 
+                disabled={isSubmitting}
+                className="bg-teal text-white px-6 py-2 rounded-lg font-bold hover:bg-teal-dark transition-colors disabled:opacity-50"
+              >
+                {isSubmitting ? "Publishing..." : "Publish"}
+              </button>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            <h1 className="text-xl font-bold text-gray-900 border-b pb-4 mb-6">Category</h1>
+            <div className="grid grid-cols-2 gap-4">
+              {["art", "science", "technology", "cinema", "design", "food"].map((category) => (
+                <div key={category} className="flex items-center space-x-2">
+                  <input
+                    type="radio"
+                    checked={cat === category}
+                    name="cat"
+                    value={category}
+                    id={category}
+                    className="w-4 h-4 text-teal focus:ring-teal border-gray-300"
+                    onChange={(e) => setCat(e.target.value)}
+                  />
+                  <label htmlFor={category} className="text-sm font-medium text-gray-700 capitalize cursor-pointer">
+                    {category}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Write;
+
