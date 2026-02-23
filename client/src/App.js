@@ -11,16 +11,17 @@ import Single from "./pages/Single";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import "./Style.scss";
 
 
 const Layout = () =>{
   return(
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar/>
-      <Outlet/>
+      <main className="flex-grow">
+        <Outlet/>
+      </main>
       <Footer/>
-    </>
+    </div>
   );
 };
 
@@ -55,10 +56,8 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-  <div className="app">
-    <div className="container">
-      <RouterProvider router={router} />
-    </div>
+  <div className="bg-gray-50 min-h-screen">
+    <RouterProvider router={router} />
   </div>
   );
 }
