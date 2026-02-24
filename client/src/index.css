@@ -2,14 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: 'Inter', sans-serif;
-}
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
 
-body {
-  @apply bg-gray-50;
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight text-slate-900 font-bold;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
 }
 
 .link {
-  @apply no-underline text-inherit;
+  @apply no-underline text-inherit transition-colors duration-200;
+}
+
+/* Custom Typography for Blog Content */
+.prose-content {
+  @apply text-slate-700 leading-relaxed text-lg;
+}
+
+.prose-content p {
+  @apply mb-6;
+}
+
+.prose-content h2 {
+  @apply text-2xl font-bold mt-12 mb-6;
 }

@@ -91,11 +91,11 @@ const Single = () => {
             )}
           </div>
 
-          <div className="prose prose-lg max-w-none">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+          <div className="prose-content max-w-none">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.15] tracking-tight mb-8">
               {post.title}
             </h1>
-            <div className="text-gray-700 leading-loose text-lg whitespace-pre-wrap mt-8">
+            <div className="text-slate-700 leading-relaxed text-lg whitespace-pre-wrap">
               {getText(post.desc)}
             </div>
           </div>

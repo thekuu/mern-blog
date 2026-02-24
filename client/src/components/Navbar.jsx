@@ -19,7 +19,7 @@ const Navbar = () => {
           
           <div className="hidden md:flex items-center space-x-8">
             {["art", "science", "technology", "cinema", "design", "food"].map((cat) => (
-              <Link key={cat} className="text-gray-600 hover:text-teal transition-colors font-medium uppercase text-sm" to={`/?cat=${cat}`}>
+              <Link key={cat} className="text-slate-500 hover:text-teal transition-colors font-semibold uppercase tracking-wider text-xs" to={`/?cat=${cat}`}>
                 {cat}
               </Link>
             ))}

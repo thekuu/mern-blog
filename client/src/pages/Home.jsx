@@ -54,11 +54,11 @@ const Home = () => {
             </div>
             <div className="p-6">
               <Link className="link" to={`/post/${post._id}`}>
-                <h1 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-teal transition-colors line-clamp-2">
+                <h1 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-teal transition-colors line-clamp-2 leading-snug">
                   {post.title}
                 </h1>
               </Link>
-              <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+              <p className="text-slate-500 mb-4 line-clamp-3 leading-relaxed text-sm">
                 {getText(post.desc)}
               </p>
               <Link to={`/post/${post._id}`} className="inline-flex items-center text-teal font-bold hover:text-teal-dark transition-colors">

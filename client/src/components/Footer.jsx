@@ -9,10 +9,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="space-y-4">
             <Link to="/">
-              <img className="h-12 w-12 rounded-full brightness-110" src={logo} alt="logo" />
+              <img className="h-10 w-10 rounded-full grayscale brightness-150" src={logo} alt="logo" />
             </Link>
-            <p className="text-sm leading-relaxed max-w-xs">
-              A modern space for sharing thoughts, stories, and ideas. Built with passion using the MERN stack.
+            <p className="text-xs text-slate-400 leading-relaxed max-w-xs uppercase tracking-widest font-medium">
+              Sharing thoughts, stories, and ideas. Built with the MERN stack.
             </p>
           </div>
           
