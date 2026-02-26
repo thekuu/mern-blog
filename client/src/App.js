@@ -11,6 +11,7 @@ import Single from "./pages/Single";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import "./Style.scss";
 
 
 const Layout = () =>{
