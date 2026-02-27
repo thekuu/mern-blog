@@ -1,1 +1,8 @@
-{"name":"mern-blog","private":true,"dependencies":{"autoprefixer":"^10.4.24","postcss":"^8.5.6","tailwindcss":"^4.2.0"}}
+{
+  "name": "mern-blog",
+  "private": true,
+  "scripts": {
+    "build": "npm install --prefix api && npm run build --prefix api",
+    "start": "npm start --prefix api"
+  }
+}
