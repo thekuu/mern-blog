@@ -88,7 +88,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 // Start the server
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : '127.0.0.1';
+const HOST = '0.0.0.0';
 app.listen(PORT, HOST, () => {
   console.log(`Server is running on ${HOST}:${PORT}!`);
 });
