@@ -94,7 +94,11 @@ export const logout = (req, res)=>{
             const token = jwt.sign({ id: user._id }, "jwtkey");
             const { password, ...other } = user._doc;
     
-            res.cookie("access_token", token, { httpOnly: true }).status(200).json(other);
+            res.cookie("access_token", token, {
+                httpOnly: true,
+                sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+                secure: process.env.NODE_ENV === "production"
+            }).status(200).json(other);
         } catch (err) {
             res.status(500).json(err);
         }
@@ -103,8 +107,8 @@ export const logout = (req, res)=>{
     // Logout User
     export const logout = (req, res) => {
         res.clearCookie("access_token", {
-            sameSite: "none",
-            secure: true
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            secure: process.env.NODE_ENV === "production"
         }).status(200).json("User has been logged out!");
     };
     

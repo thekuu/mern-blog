@@ -49,6 +49,13 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
+const corsOptions = {
+  origin: true,
+  credentials: true,
+};
+import cors from "cors";
+app.use(cors(corsOptions));
+
 // MongoDB Connection
 connectDB();  // Call the function to connect to MongoDB
 
