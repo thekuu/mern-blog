@@ -130,7 +130,8 @@ export const addPost = async (req, res) => {
             await newPost.save();
             res.status(200).json("Post has been created.");
         } catch (err) {
-            res.status(500).json(err);
+            console.error("Error creating post:", err);
+            res.status(500).json({ error: "Failed to create post", details: err.message });
         }
     });
 };
