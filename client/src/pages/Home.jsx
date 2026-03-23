@@ -24,7 +24,8 @@ const Home = () => {
 
   const getText = (html) => {
     const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent;
+    const text = doc.body.textContent;
+    return text.length > 200 ? text.substring(0, 200).trimEnd() + "..." : text;
   };
 
   if (loading) {
@@ -48,7 +49,9 @@ const Home = () => {
                 <h1>{post.title}</h1>
               </Link>
               <p>{getText(post.desc)}</p>
-              <button>Read More</button>
+              <Link to={`/post/${post._id}`}>
+                <button>Read More</button>
+              </Link>
             </div>
           </div>
         ))}
