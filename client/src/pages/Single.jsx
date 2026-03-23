@@ -59,7 +59,7 @@ const Single = () => {
           {post?.img && (
             <img 
               className="w-full h-[400px] object-cover rounded-3xl shadow-lg" 
-              src={`../upload/${post.img}`} 
+              src={post.img?.startsWith("http") ? post.img : `../upload/${post.img}`} 
               alt={post.title} 
             />
           )}
