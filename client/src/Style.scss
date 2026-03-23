@@ -1,3 +1,36 @@
+.post-body {
+  p {
+    margin-bottom: 1.25rem;
+    text-align: justify;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+
+  ul, ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.25rem;
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+
+  blockquote {
+    border-left: 4px solid teal;
+    padding-left: 1rem;
+    margin: 1.25rem 0;
+    color: #555;
+    font-style: italic;
+  }
+}
+
 .home {
   .posts {
     margin-top: 50px;

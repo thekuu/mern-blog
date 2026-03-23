@@ -95,9 +95,10 @@ const Single = () => {
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.15] tracking-tight mb-8">
               {post.title}
             </h1>
-            <div className="text-slate-700 leading-relaxed text-lg whitespace-pre-wrap">
-              {getText(post.desc)}
-            </div>
+            <div
+              className="post-body text-slate-700 leading-relaxed text-lg"
+              dangerouslySetInnerHTML={{ __html: post.desc }}
+            />
           </div>
         </div>
         
