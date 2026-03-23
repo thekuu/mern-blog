@@ -43,15 +43,15 @@ const router = createBrowserRouter([
         path: "/post/:id",
         element: <Single/>
       },
+      {
+        path: "/register",
+        element: <Register/>,
+      },
+      {
+        path: "/login",
+        element: <Login/>,
+      },
     ]
-  },
-  {
-    path: "/register",
-    element: <Register/>,
-  },
-  {
-    path: "/login",
-    element: <Login/>,
   },
 ]);
 
