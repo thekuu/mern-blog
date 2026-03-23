@@ -90,8 +90,8 @@ import jwt from "jsonwebtoken";
 export const getPosts = async (req, res) => {
     try {
         const posts = req.query.cat 
-            ? await Post.find({ cat: req.query.cat })
-            : await Post.find();
+            ? await Post.find({ cat: req.query.cat }).sort({ createdAt: -1 })
+            : await Post.find().sort({ createdAt: -1 });
         res.status(200).json(posts);
     } catch (err) {
         res.status(500).json(err);
