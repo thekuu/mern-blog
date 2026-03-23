@@ -49,3 +49,9 @@ build = ["bash", "-c", "cd /home/runner/workspace/client && npm run build"]
 [userenv]
 
 [userenv.shared]
+REACT_APP_FIREBASE_API_KEY = "AIzaSyA6f2Yuuf3CnbFvpkyBbj1m9VqCMNrH2lU"
+REACT_APP_FIREBASE_AUTH_DOMAIN = "mern-blog-d57ec.firebaseapp.com"
+REACT_APP_FIREBASE_PROJECT_ID = "mern-blog-d57ec"
+REACT_APP_FIREBASE_STORAGE_BUCKET = "mern-blog-d57ec.firebasestorage.app"
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID = "468399245452"
+REACT_APP_FIREBASE_APP_ID = "1:468399245452:web:52085ae3dcbdc4b99553a9"
