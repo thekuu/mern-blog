@@ -4,23 +4,34 @@
     text-align: justify;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-    font-weight: 700;
-  }
+  h1 { font-size: 2rem; font-weight: 800; margin: 1.5rem 0 0.75rem; }
+  h2 { font-size: 1.5rem; font-weight: 700; margin: 1.5rem 0 0.75rem; }
+  h3 { font-size: 1.25rem; font-weight: 700; margin: 1.25rem 0 0.5rem; }
 
-  ul, ol {
-    margin-left: 1.5rem;
+  ul {
+    list-style-type: disc;
+    margin-left: 1.75rem;
     margin-bottom: 1.25rem;
-
-    li {
-      margin-bottom: 0.25rem;
-    }
+    li { margin-bottom: 0.35rem; }
   }
+
+  ol {
+    list-style-type: decimal;
+    margin-left: 1.75rem;
+    margin-bottom: 1.25rem;
+    li { margin-bottom: 0.35rem; }
+  }
+
+  // Quill indent classes
+  .ql-indent-1 { padding-left: 2rem; }
+  .ql-indent-2 { padding-left: 4rem; }
+  .ql-indent-3 { padding-left: 6rem; }
+  .ql-indent-4 { padding-left: 8rem; }
 
   strong { font-weight: 700; }
   em { font-style: italic; }
+  u { text-decoration: underline; }
+  s { text-decoration: line-through; }
 
   blockquote {
     border-left: 4px solid teal;
@@ -28,6 +39,22 @@
     margin: 1.25rem 0;
     color: #555;
     font-style: italic;
+  }
+
+  pre {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    font-family: monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+  }
+
+  a {
+    color: teal;
+    text-decoration: underline;
   }
 }
 
@@ -94,15 +121,11 @@
         flex: 3;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        gap: 24px;
-
-        @media (max-width: 768px) {
-          gap: 16px;
-        }
+        gap: 20px;
 
         h1 {
           font-size: 48px;
+          margin: 0;
 
           @media (max-width: 1024px) {
             font-size: 36px;
@@ -116,6 +139,8 @@
         p {
           font-size: 18px;
           text-align: justify;
+          flex: 1;
+          margin: 0;
 
           @media (max-width: 768px) {
             font-size: 16px;
@@ -125,11 +150,11 @@
         button {
           width: max-content;
           padding: 10px 20px;
-          border: none;
           cursor: pointer;
           background-color: white;
           border: 1px solid teal;
           color: teal;
+          margin-top: auto;
 
           &:hover {
             background-color: #b9e7e7;

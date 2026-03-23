@@ -7,6 +7,26 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { storage } from '../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, 3, false] }],
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    [{ indent: '-1' }, { indent: '+1' }],
+    ['blockquote', 'code-block'],
+    ['link'],
+    [{ align: [] }],
+    ['clean'],
+  ],
+};
+
+const formats = [
+  'header', 'bold', 'italic', 'underline', 'strike',
+  'list', 'bullet', 'indent',
+  'blockquote', 'code-block',
+  'link', 'align',
+];
+
 const Write = () => {
   const state = useLocation().state;
   const navigate = useNavigate();
@@ -118,6 +138,8 @@ const Write = () => {
               value={value}
               onChange={setValue}
               placeholder="Tell your story..."
+              modules={modules}
+              formats={formats}
             />
           </div>
         </div>
