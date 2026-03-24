@@ -1,5 +1,4 @@
 import axios from 'axios';
-import moment from 'moment';
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -105,7 +104,6 @@ const Write = () => {
           desc: value,
           cat,
           img: finalImg,
-          date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
         });
       }
       navigate('/');
