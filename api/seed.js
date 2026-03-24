@@ -19,11 +19,11 @@ console.log("Connected to MongoDB");
 const salt = bcrypt.genSaltSync(10);
 const hash = bcrypt.hashSync("seed1234", salt);
 
-let author = await User.findOne({ username: "test" });
+let author = await User.findOne({ username: "thekey" });
 if (!author) {
   author = await User.create({
-    username: "test",
-    email: "test@blog.com",
+    username: "thekey",
+    email: "thekey@blog.com",
     password: hash,
   });
   console.log("Seed author created.");
