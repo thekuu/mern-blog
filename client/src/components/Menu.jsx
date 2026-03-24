@@ -32,7 +32,7 @@ const Menu = ({ cat }) => {
             <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
               <img 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                src={post.img ? `../upload/${post.img}` : "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80"} 
+                src={post.img ? (post.img.startsWith("http") ? post.img : `../upload/${post.img}`) : "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80"} 
                 alt={post.title} 
               />
             </div>
