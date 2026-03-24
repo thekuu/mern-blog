@@ -19,11 +19,11 @@ console.log("Connected to MongoDB");
 const salt = bcrypt.genSaltSync(10);
 const hash = bcrypt.hashSync("seed1234", salt);
 
-let author = await User.findOne({ username: "editorialteam" });
+let author = await User.findOne({ username: "test" });
 if (!author) {
   author = await User.create({
-    username: "editorialteam",
-    email: "editorial@blog.com",
+    username: "test",
+    email: "test@blog.com",
     password: hash,
   });
   console.log("Seed author created.");
@@ -169,9 +169,9 @@ const posts = [
   },
 ];
 
-// Clear existing seeded posts (optional, remove if you want to keep old posts)
-await Post.deleteMany({ uid });
-console.log("Old seed posts cleared.");
+// Clear ALL existing posts before reseeding
+await Post.deleteMany({});
+console.log("All existing posts cleared.");
 
 // Insert posts with staggered dates so sorting works correctly
 for (let i = 0; i < posts.length; i++) {
