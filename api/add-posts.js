@@ -142,6 +142,51 @@ const posts = [
     uid,
   },
 
+  // ── ART (Camus) ──────────────────────────────────────────────────────────────
+  {
+    title: "Camus and the Artist: Creation as the Ultimate Revolt",
+    cat: "art",
+    img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1200&q=80",
+    desc: `<p>Albert Camus was not primarily a literary theorist, and he would have been suspicious of anyone who tried to make him one. He was, first and last, a man seized by questions — about suffering, about solidarity, about whether a life without guaranteed meaning could still be lived fully and honestly. But running through everything he wrote, from the early notebooks to the final, unfinished manuscript found in the wreckage of his car, was a conviction about art that is as radical now as it was in 1942: <strong>to create is to refuse.</strong></p>
+
+<h2>The Absurd and Why It Demands a Response</h2>
+<p>Camus's starting point is what he called the <em>absurd</em> — not a property of the world, and not a property of the human mind, but the collision between them. The world is silent. It offers no explanation for suffering, no guarantee of justice, no confirmation that our longing for clarity will ever be satisfied. And yet we long anyway. We demand that the universe make sense, and the universe, indifferently, does not answer.</p>
+
+<blockquote>
+"The absurd is born of the confrontation between the human need and the unreasonable silence of the world."
+</blockquote>
+
+<p>Faced with this collision, Camus argued, there are three possible responses. The first is physical suicide — the literal refusal to continue. The second is what he called philosophical suicide: leaping into faith, embracing a belief system that dissolves the tension by supplying the transcendent meaning the world refuses to provide. Both of these, he insisted, are evasions. They resolve the absurd by abandoning one of its terms.</p>
+
+<p>The third response — the only honest one — is revolt. To live without appeal. To refuse the leap and refuse the exit, to hold the absurd open and keep walking anyway.</p>
+
+<h2>Where Art Enters</h2>
+<p>This is precisely where artistic creation becomes, for Camus, not a decoration on top of philosophical life but its highest expression. In <em>The Myth of Sisyphus</em>, he dedicates an entire section to the absurd creator, and the argument is worth sitting with carefully.</p>
+
+<p>The artist, Camus writes, does not create to escape meaninglessness — that would be philosophical suicide in aesthetic clothing. The serious artist creates <em>in full knowledge</em> of meaninglessness, and creates anyway. The work of art does not claim to resolve anything. It does not preach. It does not offer consolation by gesturing toward a higher order. It simply presents — a world, a character, a moment of experience — rendered with enough precision and honesty that the reader encounters something real.</p>
+
+<blockquote>
+"To work and create 'for nothing', to sculpture in clay, to know that one's creation has no future, to see one's work destroyed in a day while being aware that fundamentally this has no more importance than building for centuries — this is the difficult wisdom that absurd thought sanctions."
+</blockquote>
+
+<p>This is why Camus distrusted art that moralizes, that resolves its tensions too neatly, that leaves the reader feeling instructed rather than implicated. His own novels — <em>The Stranger</em>, <em>The Plague</em>, <em>The Fall</em> — do not tell you how to feel. <em>The Stranger</em> ends with Meursault opening himself to the gentle indifference of the world and finding something like peace in it, but Camus does not endorse this peace or condemn it. He presents it. The reader is left to reckon with it alone.</p>
+
+<h2>The Mediterranean Dimension</h2>
+<p>There is a sensory dimension to Camus's aesthetic that purely philosophical readings miss. He was born in Algeria, grew up poor in Belcourt, and carried throughout his life an almost physical attachment to light, heat, and the sea. His notebooks are full of passages that read less like philosophy and more like prose poems — meditations on the sun on white walls, on swimming in the harbor, on the smell of the city in summer.</p>
+
+<p>This is not incidental. For Camus, the body's pleasure in the world is itself a form of knowledge — a counterweight to abstraction, a reminder that revolt is not merely intellectual but lived. The artist who creates from within embodied experience, who refuses to aestheticize suffering into something bearable or beautiful on false terms, is practicing a form of solidarity. Not because the work will fix anything, but because the honesty of the witness matters.</p>
+
+<h2>Why It Still Holds</h2>
+<p>Camus died in 1960, at forty-six, in circumstances that felt almost cosmically ironic — killed not by the absurdity he had spent his life confronting but by a car accident on a road in Provence, his unfinished novel in his bag. He never resolved the tensions he spent his life holding open. He was not supposed to.</p>
+
+<p>What he left is not a system but a stance: that art made honestly, without evasion, without false comfort, is one of the few things a human being can do that is fully worthy of the situation we find ourselves in. Not because it saves us. Because it does not pretend to.</p>
+
+<p>In an era of content — of frictionless consumption, algorithmic comfort, and relentless optimization for engagement — this feels less like a historical position and more like a live challenge. To make something that holds difficulty open rather than resolving it prematurely. To refuse the consolation prize of easy meaning. To create, as Camus put it, <em>in spite of</em> everything.</p>
+
+<p>That is still, perhaps, the most interesting thing an artist can do.</p>`,
+    uid,
+  },
+
   // ── FOOD ─────────────────────────────────────────────────────────────────────
   {
     title: "The Art and Science of Spice Blending",
