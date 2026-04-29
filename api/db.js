@@ -8,16 +8,18 @@ dotenv.config();
 
 neonConfig.webSocketConstructor = ws;
 
-if (!process.env.DATABASE_URL) {
-  console.warn("DATABASE_URL not set. Database operations will fail.");
+const connectionString = process.env.NEON_DATABASE_URL || process.env.DATABASE_URL;
+
+if (!connectionString) {
+  console.warn("NEON_DATABASE_URL / DATABASE_URL not set. Database operations will fail.");
 }
 
-export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+export const pool = new Pool({ connectionString });
 export const db = drizzle(pool, { schema });
 
 const connectDB = async () => {
-  if (!process.env.DATABASE_URL) {
-    console.warn("DATABASE_URL not set. Skipping Postgres connection check.");
+  if (!connectionString) {
+    console.warn("No Postgres connection string set. Skipping connection check.");
     return;
   }
   try {

@@ -5,8 +5,8 @@ import { users, posts as postsTable } from "./schema.js";
 
 dotenv.config();
 
-if (!process.env.DATABASE_URL) {
-  console.error("DATABASE_URL not set.");
+if (!process.env.NEON_DATABASE_URL && !process.env.DATABASE_URL) {
+  console.error("No Postgres connection string set (NEON_DATABASE_URL or DATABASE_URL).");
   process.exit(1);
 }
 console.log("Connected to Postgres (Neon)");

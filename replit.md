@@ -54,6 +54,9 @@ A full-stack blog application built with MongoDB, Express.js, React, and Node.js
 5. Ensure your API calls point to your Render backend URL (you may need to update the proxy or use environment variables for the API base URL).
 
 ## Recent Changes
+- 2026-04-29: Pointed app at user's own Neon database (NEON_DATABASE_URL secret)
+  - `db.js`, `drizzle.config.js`, and seed scripts now prefer `NEON_DATABASE_URL` over `DATABASE_URL`
+  - Wiped user's Neon `public` schema clean (via `api/wipe-neon.js`), pushed schema fresh, reseeded all 15 posts
 - 2026-04-29: Database migrated from MongoDB Atlas to Neon Postgres
   - Replaced Mongoose ODM with Drizzle ORM
   - New schema in `api/schema.js`: `users` and `posts` tables with proper foreign key (posts.uid → users.id)
