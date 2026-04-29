@@ -6,17 +6,20 @@ A full-stack blog application built with MongoDB, Express.js, React, and Node.js
 ## Project Architecture
 - **Frontend**: React (Create React App) in `client/` directory, runs on port 5000
 - **Backend**: Express.js API in `api/` directory, runs on port 3000
-- **Database**: MongoDB (via Mongoose ODM)
+- **Database**: PostgreSQL (Neon serverless) via Drizzle ORM
 - **Authentication**: JWT-based with cookies
 
 ### Directory Structure
 ```
 ├── api/                    # Express.js backend
 │   ├── controllers/        # Route handlers (auth, post, user)
-│   ├── models/            # Mongoose models (user, post)
 │   ├── routes/            # Express routes
 │   ├── uploads/           # Uploaded files
-│   ├── db.js              # MongoDB connection
+│   ├── schema.js          # Drizzle schema (users, posts)
+│   ├── drizzle.config.js  # Drizzle Kit config
+│   ├── db.js              # Postgres (Neon) connection + Drizzle client
+│   ├── seed.js            # Seed: creates "thekey" user + 8 posts
+│   ├── add-posts.js       # Seed: adds 7 more posts
 │   └── index.js           # Server entry point
 ├── client/                # React frontend
 │   ├── public/            # Static assets
@@ -38,9 +41,10 @@ A full-stack blog application built with MongoDB, Express.js, React, and Node.js
 4. Set **Build Command** to `npm install`.
 5. Set **Start Command** to `node index.js`.
 6. Add environment variables:
-   - `MONGO_URI`: Your MongoDB connection string.
+   - `DATABASE_URL`: Your Neon Postgres connection string.
    - `PORT`: 10000 (Render's default).
    - `NODE_ENV`: production.
+7. After first deploy, run `npm run db:push` once locally (with the production `DATABASE_URL`) to create tables, then `npm run seed` and `npm run seed:more` to populate posts.
 
 ### Frontend (Vercel/Netlify)
 1. Connect your GitHub repository.
@@ -50,6 +54,15 @@ A full-stack blog application built with MongoDB, Express.js, React, and Node.js
 5. Ensure your API calls point to your Render backend URL (you may need to update the proxy or use environment variables for the API base URL).
 
 ## Recent Changes
+- 2026-04-29: Database migrated from MongoDB Atlas to Neon Postgres
+  - Replaced Mongoose ODM with Drizzle ORM
+  - New schema in `api/schema.js`: `users` and `posts` tables with proper foreign key (posts.uid → users.id)
+  - Rewrote `api/db.js` to use `@neondatabase/serverless` + Drizzle
+  - Rewrote auth and post controllers to use Drizzle queries
+  - API responses still expose `_id` (aliased from integer `id`) and nested `uid: { username, img }` so the frontend stays unchanged
+  - Seed scripts (`seed.js`, `add-posts.js`) rewritten for Drizzle, all 15 post articles preserved verbatim
+  - Added scripts: `npm run db:push`, `npm run seed`, `npm run seed:more`
+  - Removed dead `api/models/` directory and `mongoose`/`mongodb` packages
 - 2026-02-21: Initial Replit setup
   - Fixed hardcoded external URLs to use relative API paths
   - Added `/api` prefix to all frontend API calls to match backend routes

@@ -1,37 +1,41 @@
-import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
-import User from "./models/user.model.js";
-import Post from "./models/post.model.js";
+import { eq } from "drizzle-orm";
+import { db, pool } from "./db.js";
+import { users, posts as postsTable } from "./schema.js";
 
 dotenv.config();
 
-const MONGO_URI = process.env.MONGO_URI;
-if (!MONGO_URI) {
-  console.error("MONGO_URI not set.");
+if (!process.env.DATABASE_URL) {
+  console.error("DATABASE_URL not set.");
   process.exit(1);
 }
 
-await mongoose.connect(MONGO_URI);
-console.log("Connected to MongoDB");
+console.log("Connected to Postgres (Neon)");
 
 // Create or find seed author
 const salt = bcrypt.genSaltSync(10);
-const hash = bcrypt.hashSync("seed1234", salt);
+const hash = bcrypt.hashSync("thekey123", salt);
 
-let author = await User.findOne({ username: "thekey" });
+let authorRows = await db.select().from(users).where(eq(users.username, "thekey")).limit(1);
+let author = authorRows[0];
+
 if (!author) {
-  author = await User.create({
-    username: "thekey",
-    email: "thekey@blog.com",
-    password: hash,
-  });
+  const inserted = await db
+    .insert(users)
+    .values({
+      username: "thekey",
+      email: "thekey@blog.com",
+      password: hash,
+    })
+    .returning();
+  author = inserted[0];
   console.log("Seed author created.");
 } else {
   console.log("Seed author already exists.");
 }
 
-const uid = author._id;
+const uid = author.id;
 
 const posts = [
   // ── TECHNOLOGY ──────────────────────────────────────────────────────────────
@@ -170,16 +174,23 @@ const posts = [
 ];
 
 // Clear ALL existing posts before reseeding
-await Post.deleteMany({});
+await db.delete(postsTable);
 console.log("All existing posts cleared.");
 
 // Insert posts with staggered dates so sorting works correctly
 for (let i = 0; i < posts.length; i++) {
   const daysAgo = (posts.length - i) * 3;
   const createdAt = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
-  await Post.create({ ...posts[i], createdAt, date: createdAt });
+  await db.insert(postsTable).values({
+    title: posts[i].title,
+    desc: posts[i].desc,
+    img: posts[i].img,
+    cat: posts[i].cat,
+    uid: posts[i].uid,
+    createdAt,
+  });
   console.log(`Created: "${posts[i].title}"`);
 }
 
 console.log("\nAll seed posts created successfully.");
-await mongoose.disconnect();
+await pool.end();

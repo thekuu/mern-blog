@@ -1,19 +1,23 @@
-import mongoose from "mongoose";
 import dotenv from "dotenv";
-import User from "./models/user.model.js";
-import Post from "./models/post.model.js";
+import { eq, desc } from "drizzle-orm";
+import { db, pool } from "./db.js";
+import { users, posts as postsTable } from "./schema.js";
 
 dotenv.config();
 
-await mongoose.connect(process.env.MONGO_URI);
-console.log("Connected to MongoDB");
+if (!process.env.DATABASE_URL) {
+  console.error("DATABASE_URL not set.");
+  process.exit(1);
+}
+console.log("Connected to Postgres (Neon)");
 
-const author = await User.findOne({ username: "thekey" });
+const authorRows = await db.select().from(users).where(eq(users.username, "thekey")).limit(1);
+const author = authorRows[0];
 if (!author) {
   console.error("User 'thekey' not found. Run seed.js first.");
   process.exit(1);
 }
-const uid = author._id;
+const uid = author.id;
 
 const posts = [
 
@@ -217,15 +221,22 @@ const posts = [
 ];
 
 // Insert posts with staggered dates newer than existing ones
-const latestPost = await Post.findOne().sort({ createdAt: -1 });
-const baseDate = latestPost ? latestPost.createdAt : new Date();
+const latestRows = await db.select().from(postsTable).orderBy(desc(postsTable.createdAt)).limit(1);
+const baseDate = latestRows[0] ? latestRows[0].createdAt : new Date();
 
 for (let i = 0; i < posts.length; i++) {
   const daysAhead = (i + 1) * 2;
   const createdAt = new Date(baseDate.getTime() + daysAhead * 24 * 60 * 60 * 1000);
-  await Post.create({ ...posts[i], createdAt, date: createdAt });
+  await db.insert(postsTable).values({
+    title: posts[i].title,
+    desc: posts[i].desc,
+    img: posts[i].img,
+    cat: posts[i].cat,
+    uid: posts[i].uid,
+    createdAt,
+  });
   console.log(`Created: "${posts[i].title}"`);
 }
 
 console.log("\nAll new posts added successfully.");
-await mongoose.disconnect();
+await pool.end();
