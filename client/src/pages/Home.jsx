@@ -51,31 +51,37 @@ const Home = () => {
           return (
             <div
               key={post._id}
-              className={`flex items-center gap-8 md:gap-12 lg:gap-16 flex-col md:flex-row ${isReversed ? "md:flex-row-reverse" : ""}`}
+              className={`flex items-stretch gap-0 flex-col md:flex-row ${isReversed ? "md:flex-row-reverse" : ""} rounded-2xl overflow-hidden shadow-lg`}
+              style={{ background: "rgba(255,255,255,0.35)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.55)" }}
             >
-              {/* Image — always first in DOM so it appears on top when stacked */}
-              <div className="w-full md:flex-[2] relative">
-                <div className="hidden md:block absolute w-full h-full bg-teal-100 top-5 -left-5 -z-10" />
+              {/* Image */}
+              <div className="w-full md:flex-[2]">
                 <img
                   src={imgSrc}
                   alt={post.title}
-                  className="w-full h-56 sm:h-64 md:h-80 lg:h-96 object-cover"
+                  className="w-full h-56 sm:h-64 md:h-full object-cover"
+                  style={{ minHeight: "260px" }}
                 />
               </div>
 
-              {/* Content */}
-              <div className="w-full md:flex-[3] flex flex-col justify-center gap-3 md:gap-5">
+              {/* Glass content panel */}
+              <div className="w-full md:flex-[3] flex flex-col justify-center gap-4 p-6 md:p-10">
                 <Link to={`/post/${post._id}`} className="no-underline text-inherit">
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 leading-tight hover:text-teal-700 transition-colors">
                     {post.title}
                   </h2>
                 </Link>
-                <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                   {getText(post.desc)}
                 </p>
                 <div>
                   <Link to={`/post/${post._id}`}>
-                    <button className="px-4 py-2 md:px-5 md:py-2.5 bg-white border border-teal-600 text-teal-600 text-sm md:text-base cursor-pointer hover:bg-teal-50 hover:border-teal-700 transition-colors">
+                    <button
+                      className="px-5 py-2.5 text-sm font-medium text-teal-700 rounded-xl border border-teal-600/40 transition-all hover:text-white hover:border-transparent hover:shadow-md"
+                      style={{ background: "rgba(0,128,128,0.10)", backdropFilter: "blur(8px)" }}
+                      onMouseEnter={e => { e.currentTarget.style.background = "#008080"; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = "rgba(0,128,128,0.10)"; }}
+                    >
                       Read More
                     </button>
                   </Link>

@@ -57,11 +57,16 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-  <div className="bg-gray-50 min-h-screen">
-    <RouterProvider router={router} />
-  </div>
+    <div className="relative min-h-screen overflow-x-hidden" style={{ background: "linear-gradient(135deg, #f0fdfa 0%, #f8fafc 40%, #ecfeff 100%)" }}>
+      {/* Decorative gradient orbs */}
+      <div className="pointer-events-none fixed top-[-10%] left-[10%] w-[500px] h-[500px] rounded-full opacity-30" style={{ background: "radial-gradient(circle, #99f6e4, transparent 70%)", filter: "blur(60px)", zIndex: 0 }} />
+      <div className="pointer-events-none fixed top-[40%] right-[-5%] w-[400px] h-[400px] rounded-full opacity-20" style={{ background: "radial-gradient(circle, #67e8f9, transparent 70%)", filter: "blur(60px)", zIndex: 0 }} />
+      <div className="pointer-events-none fixed bottom-[10%] left-[-5%] w-[350px] h-[350px] rounded-full opacity-20" style={{ background: "radial-gradient(circle, #5eead4, transparent 70%)", filter: "blur(60px)", zIndex: 0 }} />
+      <div className="relative" style={{ zIndex: 1 }}>
+        <RouterProvider router={router} />
+      </div>
+    </div>
   );
 }
 
 export default App;
-
