@@ -34,8 +34,7 @@ const Login = () => {
       <div className="pointer-events-none fixed bottom-[-5%] right-[10%] w-80 h-80 rounded-full opacity-20" style={{ background: "radial-gradient(circle, #67e8f9, transparent 70%)", filter: "blur(60px)" }} />
 
       {/* Left branding panel */}
-      <div className="hidden lg:flex flex-1 flex-col justify-between p-16 text-white relative">
-        <div className="text-2xl font-black tracking-tight drop-shadow">thekey.</div>
+      <div className="hidden lg:flex flex-[0.85] flex-col justify-center pl-14 pr-6 py-12 text-white relative">
         <div className="space-y-6">
           <p className="text-4xl font-extrabold leading-snug max-w-sm drop-shadow-md">
             Ideas worth reading. Stories worth sharing.
@@ -44,11 +43,10 @@ const Login = () => {
             A space for long-form writing on technology, science, art, cinema, design, and food.
           </p>
         </div>
-        <p className="text-xs opacity-50">© {new Date().getFullYear()} thekey. All rights reserved.</p>
       </div>
 
       {/* Right glass card */}
-      <div className="flex flex-1 flex-col justify-center items-center px-6 py-16">
+      <div className="flex flex-1 flex-col justify-center items-center px-6 py-12">
         <div
           className="w-full max-w-sm rounded-3xl p-8 md:p-10 space-y-8"
           style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.30)", boxShadow: "0 8px 32px rgba(0,0,0,0.18)" }}
