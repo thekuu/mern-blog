@@ -28,25 +28,24 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex" style={{ background: "linear-gradient(135deg, #0d9488 0%, #0f766e 30%, #134e4a 100%)" }}>
+    <div className="min-h-screen flex items-center justify-center px-4 py-12" style={{ background: "linear-gradient(135deg, #0d9488 0%, #0f766e 30%, #134e4a 100%)" }}>
       {/* Decorative orbs */}
       <div className="pointer-events-none fixed top-[-10%] left-[5%] w-96 h-96 rounded-full opacity-30" style={{ background: "radial-gradient(circle, #99f6e4, transparent 70%)", filter: "blur(60px)" }} />
       <div className="pointer-events-none fixed bottom-[-5%] right-[10%] w-80 h-80 rounded-full opacity-20" style={{ background: "radial-gradient(circle, #67e8f9, transparent 70%)", filter: "blur(60px)" }} />
 
-      {/* Left branding panel */}
-      <div className="hidden lg:flex flex-[0.85] flex-col justify-center pl-14 pr-6 py-12 text-white relative">
-        <div className="space-y-6">
-          <p className="text-4xl font-extrabold leading-snug max-w-sm drop-shadow-md">
+      <div className="w-full max-w-3xl flex items-center gap-12">
+        {/* Left branding panel */}
+        <div className="hidden lg:flex flex-1 flex-col gap-6 text-white">
+          <p className="text-4xl font-extrabold leading-snug drop-shadow-md">
             Ideas worth reading. Stories worth sharing.
           </p>
-          <p className="text-sm opacity-80 leading-relaxed max-w-xs">
+          <p className="text-sm opacity-80 leading-relaxed">
             A space for long-form writing on technology, science, art, cinema, design, and food.
           </p>
         </div>
-      </div>
 
-      {/* Right glass card */}
-      <div className="flex flex-1 flex-col justify-center items-center px-6 py-12">
+        {/* Right glass card */}
+        <div className="flex-shrink-0 w-full lg:w-96 flex flex-col justify-center">
         <div
           className="w-full max-w-sm rounded-3xl p-8 md:p-10 space-y-8"
           style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.30)", boxShadow: "0 8px 32px rgba(0,0,0,0.18)" }}
@@ -111,6 +110,7 @@ const Login = () => {
               Create one
             </Link>
           </p>
+        </div>
         </div>
       </div>
     </div>
