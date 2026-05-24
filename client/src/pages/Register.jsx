@@ -33,7 +33,7 @@ const Register = () => {
 
       {/* Left branding panel */}
       <div className="hidden lg:flex flex-1 flex-col justify-between p-16 text-white relative">
-        <div className="text-2xl font-black tracking-tight drop-shadow">thekey.</div>
+        <div className="text-2xl font-black tracking-tight drop-shadow">Zekaryas Geremew.</div>
         <div className="space-y-6">
           <p className="text-4xl font-extrabold leading-snug max-w-sm drop-shadow-md">
             Write what you know. Share what matters.
@@ -42,7 +42,7 @@ const Register = () => {
             Long-form writing on technology, science, art, cinema, design, and food.
           </p>
         </div>
-        <p className="text-xs opacity-50">© {new Date().getFullYear()} thekey. All rights reserved.</p>
+        <p className="text-xs opacity-50">© {new Date().getFullYear()} Zekaryas Geremew. All rights reserved.</p>
       </div>
 
       {/* Right glass card */}
