@@ -47,7 +47,7 @@ const Footer = () => {
                 </svg>
               </a>
             </div>
-            <p className="mt-6 text-sm">© {new Date().getFullYear()} thekey. All rights reserved.</p>
+            <p className="mt-6 text-sm">© {new Date().getFullYear()} Zekaryas Geremew. All rights reserved.</p>
           </div>
         </div>
       </div>
