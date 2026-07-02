@@ -37,8 +37,8 @@ const Home = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
-      <div className="flex flex-col gap-8 md:gap-12 lg:gap-14">
+    <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-10 md:py-16 xl:py-20">
+      <div className="flex flex-col gap-8 md:gap-14 lg:gap-16 xl:gap-20">
         {posts.map((post, index) => {
           const imgSrc = post.img
             ? post.img.startsWith("http")
@@ -51,7 +51,7 @@ const Home = () => {
           return (
             <div
               key={post._id}
-              className={`flex flex-col md:flex-row ${isReversed ? "md:flex-row-reverse" : ""} rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 group`}
+              className={`flex flex-col md:flex-row ${isReversed ? "md:flex-row-reverse" : ""} rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group`}
               style={{
                 background: "rgba(255,255,255,0.32)",
                 backdropFilter: "blur(12px)",
@@ -59,30 +59,30 @@ const Home = () => {
                 border: "1px solid rgba(255,255,255,0.52)",
               }}
             >
-              {/* Image — fixed height on desktop so cards stay compact */}
+              {/* Image */}
               <div className="w-full md:w-2/5 overflow-hidden flex-shrink-0">
                 <img
                   src={imgSrc}
                   alt={post.title}
-                  className="w-full h-52 md:h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                  style={{ minHeight: "220px", maxHeight: "280px" }}
+                  className="w-full h-56 md:h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                  style={{ minHeight: "260px", maxHeight: "360px" }}
                 />
               </div>
 
               {/* Content */}
-              <div className="flex flex-col justify-center gap-3 p-6 md:p-8 lg:p-10">
+              <div className="flex flex-col justify-center gap-4 p-7 md:p-10 lg:p-12 xl:p-14">
                 <Link to={`/post/${post._id}`} className="no-underline text-inherit">
-                  <h2 className="text-xl md:text-2xl font-bold text-slate-900 leading-snug group-hover:text-teal-700 transition-colors">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 leading-snug group-hover:text-teal-700 transition-colors">
                     {post.title}
                   </h2>
                 </Link>
-                <p className="text-sm md:text-base text-slate-600 leading-relaxed">
+                <p className="text-sm md:text-base lg:text-lg text-slate-600 leading-relaxed">
                   {getText(post.desc)}
                 </p>
-                <div className="pt-1">
+                <div className="pt-2">
                   <Link to={`/post/${post._id}`}>
                     <button
-                      className="px-5 py-2 text-sm font-medium text-teal-700 rounded-xl border border-teal-600/40 transition-all hover:text-white hover:border-transparent"
+                      className="px-6 py-2.5 text-sm font-medium text-teal-700 rounded-xl border border-teal-600/40 transition-all hover:text-white hover:border-transparent"
                       style={{ background: "rgba(0,128,128,0.10)" }}
                       onMouseEnter={e => { e.currentTarget.style.background = "#008080"; }}
                       onMouseLeave={e => { e.currentTarget.style.background = "rgba(0,128,128,0.10)"; }}
