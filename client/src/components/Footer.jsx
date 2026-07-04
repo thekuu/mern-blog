@@ -12,7 +12,7 @@ const Footer = () => {
               <img className="h-10 w-10 rounded-full grayscale brightness-150" src={logo} alt="logo" />
             </Link>
             <p className="text-xs text-slate-400 leading-relaxed max-w-xs uppercase tracking-widest font-medium">
-              Sharing thoughts, stories, and ideas. Built with the MERN stack.
+              Sharing thoughts, stories, and ideas worth exploring.
             </p>
           </div>
 
